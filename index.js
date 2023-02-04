@@ -6,6 +6,7 @@ div.classList.add('complexity');
 APP_CONTAINER.appendChild(div);
 
 
+
 const h1 = document.createElement('h1');
 h1.textContent = 'Выбери сложность!';
 h1.classList.add('title');
