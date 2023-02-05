@@ -6,6 +6,7 @@
 }
 
 .button {
+    font-family: 'StratosSkyeng';
     width: 97px;
     height: 98px;
     display: flex;
@@ -14,14 +15,26 @@
     text-align: center;
     background-color: ghostwhite;
     display: flex; 
-    border-radius: 12px;   
+    border-radius: 12px;
+    font-family: 'StratosSkyeng';
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 72px; 
+color: #0080C1;
+border: none;  
 }
 
 .title {
-    color: #004980;
     text-align: center;
     color: #004980;
     padding-top: 52px;
+    font-family: 'StratosSkyeng';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 48px;
+
 }
 
 .buttonstart {
@@ -36,6 +49,14 @@
     justify-content: space-around;
     margin-left: 117px;
     margin-top: 67px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 32px;
+
     
 }
 
@@ -44,5 +65,20 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 114px;
+}
+
+.level {
+    background: #C2F5FF;
+    width: 480px;
+    height: 459px;
+}
+.subtitle {
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  color: #004980;
 }
     
