@@ -1,3 +1,5 @@
+// создаем переменную. Нужную
+
 const APP_CONTAINER = document.querySelector('.app');
 
 const div = document.createElement('div');

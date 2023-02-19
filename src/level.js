@@ -235,6 +235,7 @@ function renderLevel2Block() {
 
   level2.appendChild(subtitle2);
 }
+// полезная функция
 
 function renderLevel3Block() {
   const level3 = document.createElement('div');
