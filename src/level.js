@@ -15,185 +15,231 @@ function renderLevel1Block() {
   gameField.classList.add('gamefield');
   gameSection.appendChild(gameField);
 
-  const shirtCart1 = document.createElement('img');
-  shirtCart1.setAttribute('src', './img/shirt.png');
-  shirtCart1.classList.add('img_cart');
-  gameField.appendChild(shirtCart1);
+  const CardListData = [
+    {
+      id: 1,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 2,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 3,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 4,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 5,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 6,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 7,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 8,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 9,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 10,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 11,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 12,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 13,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 14,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 15,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 16,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 17,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 18,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 19,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 20,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 21,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 22,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 23,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 24,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 25,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 26,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 27,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 28,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 29,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 30,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 31,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 32,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 33,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 34,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 35,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+    {
+      id: 36,
+      elem: 'img',
+      src: './img/shirt.png',
+      class: 'img_cart',
+    },
+  ];
 
-  const shirtCart2 = document.createElement('img');
-  shirtCart2.setAttribute('src', './img/shirt.png');
-  shirtCart2.classList.add('img_cart');
-  gameField.appendChild(shirtCart2);
-
-  const shirtCart3 = document.createElement('img');
-  shirtCart3.setAttribute('src', './img/shirt.png');
-  shirtCart3.classList.add('img_cart');
-  gameField.appendChild(shirtCart3);
-
-  const shirtCart4 = document.createElement('img');
-  shirtCart4.setAttribute('src', './img/shirt.png');
-  shirtCart4.classList.add('img_cart');
-  gameField.appendChild(shirtCart4);
-
-  const shirtCart5 = document.createElement('img');
-  shirtCart5.setAttribute('src', './img/shirt.png');
-  shirtCart5.classList.add('img_cart');
-  gameField.appendChild(shirtCart5);
-
-  const shirtCart6 = document.createElement('img');
-  shirtCart6.setAttribute('src', './img/shirt.png');
-  shirtCart6.classList.add('img_cart');
-  gameField.appendChild(shirtCart6);
-
-  const shirtCart7 = document.createElement('img');
-  shirtCart7.setAttribute('src', './img/shirt.png');
-  shirtCart7.classList.add('img_cart');
-  gameField.appendChild(shirtCart7);
-
-  const shirtCart8 = document.createElement('img');
-  shirtCart8.setAttribute('src', './img/shirt.png');
-  shirtCart8.classList.add('img_cart');
-  gameField.appendChild(shirtCart8);
-
-  const shirtCart9 = document.createElement('img');
-  shirtCart9.setAttribute('src', './img/shirt.png');
-  shirtCart9.classList.add('img_cart');
-  gameField.appendChild(shirtCart9);
-
-  const shirtCart10 = document.createElement('img');
-  shirtCart10.setAttribute('src', './img/shirt.png');
-  shirtCart10.classList.add('img_cart');
-  gameField.appendChild(shirtCart10);
-
-  const shirtCart11 = document.createElement('img');
-  shirtCart11.setAttribute('src', './img/shirt.png');
-  shirtCart11.classList.add('img_cart');
-  gameField.appendChild(shirtCart11);
-
-  const shirtCart12 = document.createElement('img');
-  shirtCart12.setAttribute('src', './img/shirt.png');
-  shirtCart12.classList.add('img_cart');
-  gameField.appendChild(shirtCart12);
-
-  const shirtCart13 = document.createElement('img');
-  shirtCart13.setAttribute('src', './img/shirt.png');
-  shirtCart13.classList.add('img_cart');
-  gameField.appendChild(shirtCart13);
-
-  const shirtCart14 = document.createElement('img');
-  shirtCart14.setAttribute('src', './img/shirt.png');
-  shirtCart14.classList.add('img_cart');
-  gameField.appendChild(shirtCart14);
-
-  const shirtCart15 = document.createElement('img');
-  shirtCart15.setAttribute('src', './img/shirt.png');
-  shirtCart15.classList.add('img_cart');
-  gameField.appendChild(shirtCart15);
-
-  const shirtCart16 = document.createElement('img');
-  shirtCart16.setAttribute('src', './img/shirt.png');
-  shirtCart16.classList.add('img_cart');
-  gameField.appendChild(shirtCart16);
-
-  const shirtCart17 = document.createElement('img');
-  shirtCart17.setAttribute('src', './img/shirt.png');
-  shirtCart17.classList.add('img_cart');
-  gameField.appendChild(shirtCart17);
-
-  const shirtCart18 = document.createElement('img');
-  shirtCart18.setAttribute('src', './img/shirt.png');
-  shirtCart18.classList.add('img_cart');
-  gameField.appendChild(shirtCart18);
-
-  const shirtCart19 = document.createElement('img');
-  shirtCart19.setAttribute('src', './img/shirt.png');
-  shirtCart19.classList.add('img_cart');
-  gameField.appendChild(shirtCart19);
-
-  const shirtCart20 = document.createElement('img');
-  shirtCart20.setAttribute('src', './img/shirt.png');
-  shirtCart20.classList.add('img_cart');
-  gameField.appendChild(shirtCart20);
-
-  const shirtCart21 = document.createElement('img');
-  shirtCart21.setAttribute('src', './img/shirt.png');
-  shirtCart21.classList.add('img_cart');
-  gameField.appendChild(shirtCart21);
-
-  const shirtCart22 = document.createElement('img');
-  shirtCart22.setAttribute('src', './img/shirt.png');
-  shirtCart22.classList.add('img_cart');
-  gameField.appendChild(shirtCart22);
-
-  const shirtCart23 = document.createElement('img');
-  shirtCart23.setAttribute('src', './img/shirt.png');
-  shirtCart23.classList.add('img_cart');
-  gameField.appendChild(shirtCart23);
-
-  const shirtCart24 = document.createElement('img');
-  shirtCart1.setAttribute('src', './img/shirt.png');
-  shirtCart24.classList.add('img_cart');
-  gameField.appendChild(shirtCart24);
-
-  const shirtCart25 = document.createElement('img');
-  shirtCart25.setAttribute('src', './img/shirt.png');
-  shirtCart25.classList.add('img_cart');
-  gameField.appendChild(shirtCart25);
-
-  const shirtCart26 = document.createElement('img');
-  shirtCart26.setAttribute('src', './img/shirt.png');
-  shirtCart26.classList.add('img_cart');
-  gameField.appendChild(shirtCart26);
-
-  const shirtCart27 = document.createElement('img');
-  shirtCart27.setAttribute('src', './img/shirt.png');
-  shirtCart27.classList.add('img_cart');
-  gameField.appendChild(shirtCart27);
-
-  const shirtCart28 = document.createElement('img');
-  shirtCart28.setAttribute('src', './img/shirt.png');
-  shirtCart28.classList.add('img_cart');
-  gameField.appendChild(shirtCart28);
-
-  const shirtCart29 = document.createElement('img');
-  shirtCart29.setAttribute('src', './img/shirt.png');
-  shirtCart29.classList.add('img_cart');
-  gameField.appendChild(shirtCart29);
-
-  const shirtCart30 = document.createElement('img');
-  shirtCart30.setAttribute('src', './img/shirt.png');
-  shirtCart30.classList.add('img_cart');
-  gameField.appendChild(shirtCart30);
-
-  const shirtCart31 = document.createElement('img');
-  shirtCart31.setAttribute('src', './img/shirt.png');
-  shirtCart31.classList.add('img_cart');
-  gameField.appendChild(shirtCart31);
-
-  const shirtCart32 = document.createElement('img');
-  shirtCart32.setAttribute('src', './img/shirt.png');
-  shirtCart32.classList.add('img_cart');
-  gameField.appendChild(shirtCart32);
-
-  const shirtCart33 = document.createElement('img');
-  shirtCart33.setAttribute('src', './img/shirt.png');
-  shirtCart33.classList.add('img_cart');
-  gameField.appendChild(shirtCart33);
-
-  const shirtCart34 = document.createElement('img');
-  shirtCart34.setAttribute('src', './img/shirt.png');
-  shirtCart34.classList.add('img_cart');
-  gameField.appendChild(shirtCart34);
-
-  const shirtCart35 = document.createElement('img');
-  shirtCart1.setAttribute('src', './img/shirt.png');
-  shirtCart35.classList.add('img_cart');
-  gameField.appendChild(shirtCart35);
-
-  const shirtCart36 = document.createElement('img');
-  shirtCart36.setAttribute('src', './img/shirt.png');
-  shirtCart36.classList.add('img_cart');
-  gameField.appendChild(shirtCart36);
+  CardListData.forEach((card) => {
+    const cardElem = document.createElement(card.elem);
+    cardElem.setAttribute('src', card.src);
+    cardElem.classList.add(card.class);
+    gameField.appendChild(cardElem);
+  });
 
   const buttonRestart = document.createElement('button');
   buttonRestart.textContent = 'Начать заново!';
@@ -235,7 +281,6 @@ function renderLevel2Block() {
 
   level2.appendChild(subtitle2);
 }
-// полезная функция
 
 function renderLevel3Block() {
   const level3 = document.createElement('div');
@@ -264,12 +309,12 @@ buttonStart.addEventListener('click', () => {
 });
 window.application.levels['level1'] = renderLevel1Block;
 
-button2.addEventListener('click', () => {
-  window.application.renderLevel('level2');
-});
+// button2.addEventListener('click', () => {
+//   window.application.renderLevel('level2');
+// });
 window.application.levels['level2'] = renderLevel2Block;
 
-button3.addEventListener('click', () => {
-  window.application.renderLevel('level3');
-});
+// button3.addEventListener('click', () => {
+//   window.application.renderLevel('level3');
+// });
 window.application.levels['level3'] = renderLevel3Block;
