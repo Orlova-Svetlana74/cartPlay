@@ -1,0 +1,178 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #004980;
+  font-family: StratosSkyeng, sans-serif;
+}
+
+.center {
+  padding-left: calc(50% - 512px);
+  padding-right: calc(50% - 512px);
+}
+
+.complexity {
+  width: 480px;
+  height: 459px;
+  background: #c2f5ff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  width: 97px;
+  height: 98px;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: ghostwhite;
+  display: flex;
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #0080c1;
+  border: none;
+}
+
+.title {
+  text-align: center;
+  color: #004980;
+  padding-top: 52px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.buttonstart {
+  width: 246px;
+  height: 50px;
+  left: 389px;
+  top: 519px;
+  background: #7ac100;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 117px;
+  margin-top: 67px;
+  color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  border: none;
+}
+
+.divstart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 48px;
+}
+
+.subtitle {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  color: #004980;
+}
+
+.buttonrestart {
+  width: 246px;
+  height: 50px;
+  background: #7ac100;
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.timer {
+  width: 155px;
+}
+
+.timer-minsec {
+  display: -webkit-box;
+  display: flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  gap: 57px;
+}
+
+.min-sec {
+  padding-right: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #fff;
+}
+
+.timer-number {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row-reverse;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  gap: 578px;
+  padding-bottom: 35px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: 158px;  
+}
+
+.topdiv {
+  width: 208px;
+  align-self: center;  
+}
+
+.gamefield {
+    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+  }
+
