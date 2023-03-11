@@ -1,5 +1,4 @@
-import CardListData from './cardList.js';
-function renderLevel1Block() {
+function renderLevel3Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
   APP_CONTAINER.appendChild(gameSection);
@@ -13,14 +12,14 @@ function renderLevel1Block() {
   gameSection.appendChild(gameField);
 
   const array = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 9; i++) {
     const random = Math.floor(Math.random() * CardListData.length);
     array.push(CardListData[random]);
   }
 
   const arrayNew = array.concat(array);
-  console.log(arrayNew);
 
+  console.log(arrayNew);
   function shuffle(arrayNew) {
     let currentIndex = arrayNew.length;
     let temporaryValue;
@@ -34,6 +33,7 @@ function renderLevel1Block() {
     }
     return arrayNew;
   }
+
   shuffle(arrayNew);
   // Количество отгаданных пар
   let moves = 0;
@@ -41,8 +41,6 @@ function renderLevel1Block() {
   let firstCard;
   let secondCard;
   let isCardFlipped = false;
-
-  // eslint-disable-next-line no-inner-declarations
   function flipCard() {
     console.log('flipping card');
     // Если уже была выбрана первая карта повторно, то выходим из функции
@@ -93,11 +91,11 @@ function renderLevel1Block() {
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
     cardElem.setAttribute('src', card.src);
-
     // Задаем data атрибут, значение равно пути до картинки
     cardElem.setAttribute('data-framework', card.src);
 
     gameField.appendChild(cardElem);
+
     function coupCard() {
       cardElem.setAttribute('src', card.cardShirt);
     }
@@ -137,17 +135,7 @@ function renderLevel1Block() {
   TopTimer.appendChild(TimerNumber);
 }
 
-window.application = {
-  levels: {},
-  renderLevel: function (levelNumber) {
-    window.application.levels[levelNumber];
-    // очищаем контейнер перед отрисовкой экрана
-    APP_CONTAINER.innerHTML = '';
-    window.application.levels[levelNumber]();
-  },
-};
-
-button1.addEventListener('click', () => {
-  window.application.renderLevel('level1');
+button3.addEventListener('click', () => {
+  window.application.renderLevel('level3');
 });
-window.application.levels['level1'] = renderLevel1Block;
+window.application.levels['level3'] = renderLevel3Block;
