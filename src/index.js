@@ -1,4 +1,7 @@
-// import {level} from "./js/level";
+import './level.js';
+import './level_average.js';
+import './level_difficult.js';
+import './cardList.js';
 import './styles.css';
 const APP_CONTAINER = document.querySelector('.app');
 
@@ -15,7 +18,7 @@ h1.textContent = 'Выбери сложность!';
 h1.classList.add('title');
 topDiv.appendChild(h1);
 
-const divStart = document.createElement('div');
+export const divStart = document.createElement('div');
 divStart.classList.add('divstart');
 div.appendChild(divStart);
 
@@ -46,11 +49,6 @@ div.appendChild(divStart);
 //   buttonElem.setAttribute('name', level.name);
 //   divStart.appendChild(buttonElem);
 // });
-
-const button1 = document.createElement('button');
-button1.classList.add('button');
-button1.textContent = '1';
-divStart.appendChild(button1);
 
 const button2 = document.createElement('button');
 button2.classList.add('button');

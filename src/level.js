@@ -1,4 +1,3 @@
-import CardListData from './cardList.js';
 function renderLevel1Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
@@ -146,6 +145,11 @@ window.application = {
     window.application.levels[levelNumber]();
   },
 };
+import { divStart } from './index.js';
+const button1 = document.createElement('button');
+button1.classList.add('button');
+button1.textContent = '1';
+divStart.appendChild(button1);
 
 button1.addEventListener('click', () => {
   window.application.renderLevel('level1');
