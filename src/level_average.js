@@ -1,4 +1,6 @@
-function renderLevel2Block() {
+import { CardListData } from './cardList.js';
+import { APP_CONTAINER } from './index.js';
+export function renderLevel2Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
   APP_CONTAINER.appendChild(gameSection);
@@ -135,7 +137,3 @@ function renderLevel2Block() {
   TimerNumber.classList.add('timer-number');
   TopTimer.appendChild(TimerNumber);
 }
-button2.addEventListener('click', () => {
-  window.application.renderLevel('level2');
-});
-window.application.levels['level2'] = renderLevel2Block;

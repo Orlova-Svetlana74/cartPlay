@@ -1,10 +1,7 @@
-import './level.js';
-import './level_average.js';
-import './level_difficult.js';
 import './cardList.js';
 import './styles.css';
-const APP_CONTAINER = document.querySelector('.app');
 
+export const APP_CONTAINER = document.querySelector('.app');
 const div = document.createElement('div');
 div.classList.add('complexity');
 APP_CONTAINER.appendChild(div);
@@ -18,7 +15,7 @@ h1.textContent = 'Выбери сложность!';
 h1.classList.add('title');
 topDiv.appendChild(h1);
 
-export const divStart = document.createElement('div');
+const divStart = document.createElement('div');
 divStart.classList.add('divstart');
 div.appendChild(divStart);
 
@@ -50,15 +47,37 @@ div.appendChild(divStart);
 //   divStart.appendChild(buttonElem);
 // });
 
+const button1 = document.createElement('button');
+button1.classList.add('button');
+button1.textContent = '1';
+divStart.appendChild(button1);
+import { renderLevel1Block } from './level.js';
+button1.addEventListener('click', () => {
+  window.application.renderLevel('level1');
+});
+window.application.levels['level1'] = renderLevel1Block;
+
+import { renderLevel2Block } from './level_average';
 const button2 = document.createElement('button');
 button2.classList.add('button');
 button2.textContent = '2';
 divStart.appendChild(button2);
 
+button2.addEventListener('click', () => {
+  window.application.renderLevel('level2');
+});
+window.application.levels['level2'] = renderLevel2Block;
+
+import { renderLevel3Block } from './level_difficult';
 const button3 = document.createElement('button');
 button3.classList.add('button');
 button3.textContent = '3';
 divStart.appendChild(button3);
+
+button3.addEventListener('click', () => {
+  window.application.renderLevel('level3');
+});
+window.application.levels['level3'] = renderLevel3Block;
 
 const buttonStart = document.createElement('button');
 buttonStart.classList.add('buttonstart');

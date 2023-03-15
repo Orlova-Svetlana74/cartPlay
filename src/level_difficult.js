@@ -1,4 +1,6 @@
-function renderLevel3Block() {
+import { CardListData } from './cardList.js';
+import { APP_CONTAINER } from './index.js';
+export function renderLevel3Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
   APP_CONTAINER.appendChild(gameSection);
@@ -134,8 +136,3 @@ function renderLevel3Block() {
   TimerNumber.classList.add('timer-number');
   TopTimer.appendChild(TimerNumber);
 }
-
-button3.addEventListener('click', () => {
-  window.application.renderLevel('level3');
-});
-window.application.levels['level3'] = renderLevel3Block;
