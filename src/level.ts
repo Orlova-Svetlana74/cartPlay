@@ -1,6 +1,5 @@
 import { CardListData } from './cardList.js';
-import { APP_CONTAINER } from './index.js';
-export function renderLevel3Block() {
+export function renderLevel1Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
   APP_CONTAINER.appendChild(gameSection);
@@ -13,16 +12,22 @@ export function renderLevel3Block() {
   gameField.classList.add('gamefield');
   gameSection.appendChild(gameField);
 
-  const array = [];
-  for (let i = 0; i < 9; i++) {
+  interface Card {
+    id: number;
+    elem: string;
+    src: string;
+    cardShirt: string;
+  }
+  const array: Array<Card> = [];
+  for (let i = 0; i < 3; i++) {
     const random = Math.floor(Math.random() * CardListData.length);
     array.push(CardListData[random]);
   }
-
-  const arrayNew = array.concat(array);
-
+  const arrayNew: Array<Card> = array.concat(array);
   console.log(arrayNew);
-  function shuffle(arrayNew) {
+
+  function shuffle(arrayNew: any) {
+    // @ts-ignore
     let currentIndex = arrayNew.length;
     let temporaryValue;
     let randomIndex;
@@ -35,18 +40,18 @@ export function renderLevel3Block() {
     }
     return arrayNew;
   }
-
   shuffle(arrayNew);
   // Количество отгаданных пар
   let moves = 0;
-
-  let firstCard;
-  let secondCard;
+  let firstCard: HTMLElement;
+  let secondCard: HTMLElement;
   let isCardFlipped = false;
-  function flipCard() {
+
+  // eslint-disable-next-line no-inner-declarations
+  function flipCard(this: HTMLElement) {
     console.log('flipping card');
     // Если уже была выбрана первая карта повторно, то выходим из функции
-    if (firstCard === this) return;
+    if (this === firstCard) return;
     // Если карта ни разу не была перевернута, то это первая карта
     if (!isCardFlipped) {
       // присваиваем карту
@@ -81,7 +86,7 @@ export function renderLevel3Block() {
 
     console.log('🚀 ~ file: level.js:58 ~ checkWin ~ winResult:', winResult);
 
-    if (winResult && moves === 3) {
+    if ((winResult = true && moves === 3)) {
       alert('Вы победили');
     } else {
       alert('Вы проиграли!');
@@ -92,12 +97,11 @@ export function renderLevel3Block() {
   }
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
-    cardElem.setAttribute('src', card.src);
+
     // Задаем data атрибут, значение равно пути до картинки
-    cardElem.setAttribute('data-framework', card.src);
+    cardElem.setAttribute('src', card.src);
 
     gameField.appendChild(cardElem);
-
     function coupCard() {
       cardElem.setAttribute('src', card.cardShirt);
     }
@@ -136,3 +140,16 @@ export function renderLevel3Block() {
   TimerNumber.classList.add('timer-number');
   TopTimer.appendChild(TimerNumber);
 }
+import { APP_CONTAINER } from './index.js';
+// @ts-ignore
+window.application = {
+  levels: {},
+  renderLevel: function (levelNumber: any) {
+    // @ts-ignore
+    window.application.levels[levelNumber];
+    // очищаем контейнер перед отрисовкой экрана
+    APP_CONTAINER.innerHTML = '';
+    // @ts-ignore
+    window.application.levels[levelNumber]();
+  },
+};

@@ -1,5 +1,6 @@
 import { CardListData } from './cardList.js';
-export function renderLevel1Block() {
+import { APP_CONTAINER } from './index.js';
+export function renderLevel3Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
   APP_CONTAINER.appendChild(gameSection);
@@ -12,16 +13,23 @@ export function renderLevel1Block() {
   gameField.classList.add('gamefield');
   gameSection.appendChild(gameField);
 
-  const array = [];
-  for (let i = 0; i < 3; i++) {
+  interface Card {
+    id: number;
+    elem: string;
+    src: string;
+    cardShirt: string;
+  }
+
+  const array: Array<Card> = [];
+  for (let i = 0; i < 9; i++) {
     const random = Math.floor(Math.random() * CardListData.length);
     array.push(CardListData[random]);
   }
 
-  const arrayNew = array.concat(array);
-  console.log(arrayNew);
+  const arrayNew: Array<Card> = array.concat(array);
 
-  function shuffle(arrayNew) {
+  console.log(arrayNew);
+  function shuffle(arrayNew:any) {
     let currentIndex = arrayNew.length;
     let temporaryValue;
     let randomIndex;
@@ -34,22 +42,24 @@ export function renderLevel1Block() {
     }
     return arrayNew;
   }
+
   shuffle(arrayNew);
   // Количество отгаданных пар
   let moves = 0;
 
-  let firstCard;
-  let secondCard;
+  let firstCard: HTMLElement;
+  let secondCard: HTMLElement;
+ 
   let isCardFlipped = false;
-
-  // eslint-disable-next-line no-inner-declarations
   function flipCard() {
     console.log('flipping card');
     // Если уже была выбрана первая карта повторно, то выходим из функции
+    // @ts-ignore
     if (firstCard === this) return;
     // Если карта ни разу не была перевернута, то это первая карта
     if (!isCardFlipped) {
       // присваиваем карту
+      // @ts-ignore
       firstCard = this;
       // Задаем в переменную, что мы перевернули карту
       isCardFlipped = true;
@@ -59,6 +69,7 @@ export function renderLevel1Block() {
     // в теле функции код дошел до этой строчки
     // значит не было выхода из функции и карта уже была перевернута (isCardFlipped равен true)
     // присваиваем как вторую карту
+    // @ts-ignore
     secondCard = this;
 
     // вызов функции проверки внутри функции flipCard, так как она будет вызываться при клике на карту
@@ -93,11 +104,11 @@ export function renderLevel1Block() {
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
     cardElem.setAttribute('src', card.src);
-
     // Задаем data атрибут, значение равно пути до картинки
     cardElem.setAttribute('data-framework', card.src);
 
     gameField.appendChild(cardElem);
+
     function coupCard() {
       cardElem.setAttribute('src', card.cardShirt);
     }
@@ -136,13 +147,3 @@ export function renderLevel1Block() {
   TimerNumber.classList.add('timer-number');
   TopTimer.appendChild(TimerNumber);
 }
-import { APP_CONTAINER } from './index.js';
-window.application = {
-  levels: {},
-  renderLevel: function (levelNumber) {
-    window.application.levels[levelNumber];
-    // очищаем контейнер перед отрисовкой экрана
-    APP_CONTAINER.innerHTML = '';
-    window.application.levels[levelNumber]();
-  },
-};

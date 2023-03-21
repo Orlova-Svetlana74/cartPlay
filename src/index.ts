@@ -1,7 +1,7 @@
 import './cardList.js';
 import './styles.css';
 
-export const APP_CONTAINER = document.querySelector('.app');
+export const APP_CONTAINER = document.querySelector('.app') as HTMLElement;
 const div = document.createElement('div');
 div.classList.add('complexity');
 APP_CONTAINER.appendChild(div);
@@ -52,9 +52,12 @@ button1.classList.add('button');
 button1.textContent = '1';
 divStart.appendChild(button1);
 import { renderLevel1Block } from './level.js';
+
 button1.addEventListener('click', () => {
+  // @ts-ignore
   window.application.renderLevel('level1');
 });
+// @ts-ignore
 window.application.levels['level1'] = renderLevel1Block;
 
 import { renderLevel2Block } from './level_average';
@@ -64,8 +67,10 @@ button2.textContent = '2';
 divStart.appendChild(button2);
 
 button2.addEventListener('click', () => {
+  // @ts-ignore
   window.application.renderLevel('level2');
 });
+// @ts-ignore
 window.application.levels['level2'] = renderLevel2Block;
 
 import { renderLevel3Block } from './level_difficult';
@@ -75,8 +80,10 @@ button3.textContent = '3';
 divStart.appendChild(button3);
 
 button3.addEventListener('click', () => {
+  // @ts-ignore
   window.application.renderLevel('level3');
 });
+// @ts-ignore
 window.application.levels['level3'] = renderLevel3Block;
 
 const buttonStart = document.createElement('button');

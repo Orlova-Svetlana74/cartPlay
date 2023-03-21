@@ -13,16 +13,22 @@ export function renderLevel2Block() {
   gameField.classList.add('gamefield');
   gameSection.appendChild(gameField);
 
-  const array = [];
+  interface Card {
+    id: number;
+    elem: string;
+    src: string;
+    cardShirt: string;
+  }
+  const array: Array<Card> = [];
   for (let i = 0; i < 6; i++) {
     const random = Math.floor(Math.random() * CardListData.length);
     array.push(CardListData[random]);
   }
 
-  const arrayNew = array.concat(array);
+  const arrayNew: Array<Card> = array.concat(array);
 
   console.log(arrayNew);
-  function shuffle(arrayNew) {
+  function shuffle(arrayNew:any) {
     let currentIndex = arrayNew.length;
     let temporaryValue;
     let randomIndex;
@@ -39,10 +45,10 @@ export function renderLevel2Block() {
   shuffle(arrayNew);
   // Количество отгаданных пар
   let moves = 0;
-  let firstCard;
-  let secondCard;
+  let firstCard:HTMLElement;
+  let secondCard:HTMLElement;
   let isCardFlipped = false;
-  function flipCard() {
+  function flipCard(this:HTMLElement) {
     console.log('flipping card');
     // Если уже была выбрана первая карта повторно, то выходим из функции
     if (firstCard === this) return;
