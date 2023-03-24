@@ -1,4 +1,4 @@
-import { CardListData } from './cardList.js';
+import { CardListData } from './cardList';
 export function renderLevel1Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
@@ -24,82 +24,58 @@ export function renderLevel1Block() {
     array.push(CardListData[random]);
   }
   const arrayNew: Array<Card> = array.concat(array);
-  console.log(arrayNew);
 
-  function shuffle(arrayNew: any) {
-    // @ts-ignore
-    let currentIndex = arrayNew.length;
-    let temporaryValue;
-    let randomIndex;
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+  function shuffle(arrayNew: Array<Card>) {
+    for (let i = arrayNew.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [arrayNew[i], arrayNew[j]] = [arrayNew[j], arrayNew[i]];
     }
-    return arrayNew;
   }
+
   shuffle(arrayNew);
-  // Количество отгаданных пар
+  // @ts-ignore
+
   let moves = 0;
-  let firstCard: HTMLElement;
-  let secondCard: HTMLElement;
-  let isCardFlipped = false;
+  let firstCard: HTMLElement | null;
+  let secondCard: HTMLElement | null;
 
   // eslint-disable-next-line no-inner-declarations
-  function flipCard(this: HTMLElement) {
-    console.log('flipping card');
-    // Если уже была выбрана первая карта повторно, то выходим из функции
-    if (this === firstCard) return;
-    // Если карта ни разу не была перевернута, то это первая карта
-    if (!isCardFlipped) {
-      // присваиваем карту
+  function flipCard(this: HTMLElement | null) {
+    if (!firstCard) {
       firstCard = this;
-      // Задаем в переменную, что мы перевернули карту
-      isCardFlipped = true;
-      // выходим из функции
       return;
     }
-    // в теле функции код дошел до этой строчки
-    // значит не было выхода из функции и карта уже была перевернута (isCardFlipped равен true)
-    // присваиваем как вторую карту
     secondCard = this;
-
-    // вызов функции проверки внутри функции flipCard, так как она будет вызываться при клике на карту
     checkWin();
   }
-
   // Вызываем функцию проверки карты
   function checkWin() {
     // Смотрим, какие у них data атрибуты
-    console.log('check first card: ', firstCard.dataset.framework);
-    console.log('check second card: ', secondCard.dataset.framework);
-
+    console.log('check first card: ', firstCard?.dataset.framework);
+    console.log('check second card: ', secondCard?.dataset.framework);
     let winResult = false;
-
-    if (firstCard.dataset.framework === secondCard.dataset.framework) {
+    if (firstCard?.dataset.framework === secondCard?.dataset.framework) {
       winResult = true;
       // Увеличиваем значение угаданных пар
       moves++;
+      // очищаем информация о перевернутых картах
+      secondCard = null;
+      firstCard = null;
     }
-
     console.log('🚀 ~ file: level.js:58 ~ checkWin ~ winResult:', winResult);
-
+    console.log(moves);
     if ((winResult = true && moves === 3)) {
-      alert('Вы победили');
-    } else {
-      alert('Вы проиграли!');
-    }
-
-    // Если количество попыток для данного уровня сложност достигнуто
-    // показываем надпись Вы выиграли
+        alert('Вы выиграли')
+      } 
+    else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
+      alert('Вы проиграли');
+    }    
   }
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
-
-    // Задаем data атрибут, значение равно пути до картинки
     cardElem.setAttribute('src', card.src);
+    // Задаем data атрибут, значение равно пути до картинки
+    cardElem.setAttribute('data-framework', card.src);
 
     gameField.appendChild(cardElem);
     function coupCard() {
@@ -140,7 +116,8 @@ export function renderLevel1Block() {
   TimerNumber.classList.add('timer-number');
   TopTimer.appendChild(TimerNumber);
 }
-import { APP_CONTAINER } from './index.js';
+
+import { APP_CONTAINER } from './index';
 // @ts-ignore
 window.application = {
   levels: {},

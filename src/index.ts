@@ -1,4 +1,4 @@
-import './cardList.js';
+import './cardList';
 import './styles.css';
 
 export const APP_CONTAINER = document.querySelector('.app') as HTMLElement;
@@ -51,7 +51,7 @@ const button1 = document.createElement('button');
 button1.classList.add('button');
 button1.textContent = '1';
 divStart.appendChild(button1);
-import { renderLevel1Block } from './level.js';
+import { renderLevel1Block } from './level';
 
 button1.addEventListener('click', () => {
   // @ts-ignore
