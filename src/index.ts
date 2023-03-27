@@ -1,12 +1,13 @@
 import './cardList';
 import './styles.css';
 
+
 export const APP_CONTAINER = document.querySelector('.app') as HTMLElement;
 const div = document.createElement('div');
 div.classList.add('complexity');
 APP_CONTAINER.appendChild(div);
 
-const topDiv = document.createElement('div');
+const topDiv = document.createElement('div')
 topDiv.classList.add('topdiv');
 div.appendChild(topDiv);
 
@@ -47,7 +48,7 @@ div.appendChild(divStart);
 //   divStart.appendChild(buttonElem);
 // });
 
-const button1 = document.createElement('button');
+export const button1 = document.createElement('button');
 button1.classList.add('button');
 button1.textContent = '1';
 divStart.appendChild(button1);

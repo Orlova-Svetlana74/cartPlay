@@ -175,3 +175,22 @@ body {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
 }
+
+.titletime {
+  color: #000;
+  font-family: StratosSkyeng, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.titlewin {
+  text-align: center;
+  color: #004980;
+  padding-top: 52px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+}
