@@ -1,5 +1,8 @@
 import { CardListData } from './cardList';
 import { APP_CONTAINER } from './index';
+import { renderWinScreenBlock } from './winScreen';
+import { renderLuserScreenBlock } from './luserScreen';
+import {renderStartBlock} from './index';
 export function renderLevel2Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
@@ -33,8 +36,7 @@ export function renderLevel2Block() {
     }
   }
   shuffle(arrayNew);
-  // @ts-ignore
-  // Количество отгаданных пар
+  // @ts-ignore  
   let moves = 0;
   let firstCard: HTMLElement | null;
   let secondCard: HTMLElement | null;
@@ -46,19 +48,15 @@ export function renderLevel2Block() {
     }
     secondCard = this;
     checkWin();
-  }
-  // Вызываем функцию проверки карты
-  function checkWin() {
-    // Смотрим, какие у них data атрибуты
+  }  
+  function checkWin() {    
     console.log('check first card: ', firstCard?.dataset.framework);
     console.log('check second card: ', secondCard?.dataset.framework);
 
     let winResult = false;
     if (firstCard?.dataset.framework === secondCard?.dataset.framework) {
-      winResult = true;
-      // Увеличиваем значение угаданных пар
-      moves++;
-      // очищаем информация о перевернутых картах
+      winResult = true;      
+      moves++;      
       secondCard = null;
       firstCard = null;
     }
@@ -66,11 +64,21 @@ export function renderLevel2Block() {
     console.log('🚀 ~ file: level.js:58 ~ checkWin ~ winResult:', winResult);
     console.log(moves);
     if ((winResult = true && moves === 6)) {
-      alert('Вы выиграли');
+      // @ts-ignore
+      window.application.renderLevel('win');
+      clearTimeout(timer);
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
-      alert('Вы проиграли');
+      // @ts-ignore
+      window.application.renderLevel('luser');
+      clearTimeout(timer);
     }
   }
+
+  // @ts-ignore
+  window.application.levels['win'] = renderWinScreenBlock;
+  // @ts-ignore
+  window.application.levels['luser'] = renderLuserScreenBlock;
+
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
     cardElem.setAttribute('src', card.src);
@@ -94,26 +102,43 @@ export function renderLevel2Block() {
   buttonRestart.classList.add('buttonrestart');
   header.appendChild(buttonRestart);
 
+  buttonRestart.addEventListener('click', () => {
+    // @ts-ignore
+    window.application.renderLevel('start');
+  });
+  // @ts-ignore
+  window.application.levels['start'] = renderStartBlock;
+
   const TopTimer = document.createElement('div');
   TopTimer.classList.add('timer');
   header.appendChild(TopTimer);
 
-  const timerMinSec = document.createElement('div');
-  timerMinSec.classList.add('timer-minsec');
-  TopTimer.appendChild(timerMinSec);
+  let now = 0;
+  let timer: any = 0;
+  let mins = 0;
+  let secs: string | number = 0;
+  
+  const cardFieldTimer: any = document.createElement('span');
+  TopTimer.appendChild(cardFieldTimer);
 
-  const timMin = document.createElement('P');
-  timMin.textContent = 'min';
-  timMin.classList.add('min-sec');
-  timerMinSec.appendChild(timMin);
+  function time() {    
+    secs = Math.floor((Date.now() - now) / 1000);
+    if (secs == 60) {
+      now = Date.now();
+      mins++;
+    }
+    if (secs < 10) {
+      secs = '0' + secs;
+    }
 
-  const timSec = document.createElement('P');
-  timSec.textContent = 'sec';
-  timSec.classList.add('min-sec');
-  timerMinSec.appendChild(timSec);
-
-  const TimerNumber = document.createElement('P');
-  TimerNumber.textContent = '00.00';
-  TimerNumber.classList.add('timer-number');
-  TopTimer.appendChild(TimerNumber);
+    cardFieldTimer.textContent = mins + ':' + secs;
+    cardFieldTimer.classList.add('timer-number');
+  }
+  startTimer();
+  
+  function startTimer() {
+    now = Date.now();
+    mins = 0;
+    timer = setInterval(time);
+  } 
 }

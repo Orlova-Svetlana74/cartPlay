@@ -1,7 +1,8 @@
 import { CardListData } from './cardList';
 import { renderWinScreenBlock } from './winScreen';
-import { button1 } from './index';
-// import { startTimer } from "./timer";
+import { renderLuserScreenBlock } from './luserScreen';
+import { renderStartBlock } from './index';
+
 
 export function renderLevel1Block() {
   const gameSection = document.createElement('section');
@@ -35,7 +36,6 @@ export function renderLevel1Block() {
       [arrayNew[i], arrayNew[j]] = [arrayNew[j], arrayNew[i]];
     }
   }
-
   shuffle(arrayNew);
   // @ts-ignore
 
@@ -52,17 +52,15 @@ export function renderLevel1Block() {
     secondCard = this;
     checkWin();
   }
-  // Вызываем функцию проверки карты
+ 
   function checkWin() {
     // Смотрим, какие у них data атрибуты
     console.log('check first card: ', firstCard?.dataset.framework);
     console.log('check second card: ', secondCard?.dataset.framework);
     let winResult = false;
     if (firstCard?.dataset.framework === secondCard?.dataset.framework) {
-      winResult = true;
-      // Увеличиваем значение угаданных пар
-      moves++;
-      // очищаем информация о перевернутых картах
+      winResult = true;      
+      moves++;      
       secondCard = null;
       firstCard = null;
     }
@@ -71,19 +69,28 @@ export function renderLevel1Block() {
     if ((winResult = true && moves === 3)) {
       // @ts-ignore
       window.application.renderLevel('win');
+      clearTimeout(timer);
+      
       // @ts-ignore
+      window.application.time.sec = secs;
+      // @ts-ignore
+      window.application.time.min = mins;
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
-      alert('Вы проиграли');
-    }
+      // @ts-ignore
+      window.application.renderLevel('luser');
+      clearTimeout(timer);
+    }    
   }
   // @ts-ignore
   window.application.levels['win'] = renderWinScreenBlock;
+  // @ts-ignore
+  window.application.levels['luser'] = renderLuserScreenBlock;
   // @ts-ignore
   window.application.levels['level1'] = renderLevel1Block;
   arrayNew.forEach((card) => {
     const cardElem = document.createElement(card.elem);
     cardElem.setAttribute('src', card.src);
-    // Задаем data атрибут, значение равно пути до картинки
+    
     cardElem.setAttribute('data-framework', card.src);
 
     gameField.appendChild(cardElem);
@@ -102,28 +109,26 @@ export function renderLevel1Block() {
   buttonRestart.classList.add('buttonrestart');
   header.appendChild(buttonRestart);
 
+  buttonRestart.addEventListener('click', () => {
+    // @ts-ignore
+    window.application.renderLevel('start');
+  });
+  // @ts-ignore
+  window.application.levels['start'] = renderStartBlock;
+
   const TopTimer = document.createElement('div');
   TopTimer.classList.add('timer');
   header.appendChild(TopTimer);
-
-  // const timerMinSec = document.createElement('div');
-  // timerMinSec.classList.add('timer-minsec');
-  // TopTimer.appendChild(timerMinSec);
-
-  // const timMin = document.createElement('P');
-  // timMin.textContent = 'min';
-  // timMin.classList.add('min-sec');
-  // timerMinSec.appendChild(timMin);
-
-  // const timSec = document.createElement('P');
-  // timSec.textContent = 'sec';
-  // timSec.classList.add('min-sec');
-  // timerMinSec.appendChild(timSec);
 
   let now = 0;
   let timer: any = 0;
   let mins = 0;
   let secs: string | number = 0;
+
+  
+  const cardFieldTimer: any = document.createElement('span');
+  TopTimer.appendChild(cardFieldTimer);
+
   function time() {
     secs = Math.floor((Date.now() - now) / 1000);
     if (secs == 60) {
@@ -132,23 +137,20 @@ export function renderLevel1Block() {
     }
     if (secs < 10) {
       secs = '0' + secs;
-    } 
-  
-  const cardFieldTimer: any = document.createElement('span');
-  cardFieldTimer.textContent = mins + ':' + secs;
-  cardFieldTimer.classList.add('timer-number');
-  TopTimer.appendChild(cardFieldTimer);
-}
-time()
-  button1.addEventListener('click', function handleTime () {
-    now = Date.now();
-  mins = 0;
-  clearInterval(timer);
-  timer = setInterval(time);    
-  });
-  
-}
+    }
 
+    cardFieldTimer.textContent = mins + ':' + secs;
+    cardFieldTimer.classList.add('timer-number');
+  }
+  startTimer();
+  
+  function startTimer() {
+    now = Date.now();
+    mins = 0;
+    timer = setInterval(time);
+  }
+  
+}
 import { APP_CONTAINER } from './index';
 // @ts-ignore
 window.application = {
@@ -161,4 +163,9 @@ window.application = {
     // @ts-ignore
     window.application.levels[levelNumber]();
   },
+  time: {
+      sec: 0,
+      min: 0
+      
+    },
 };

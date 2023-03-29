@@ -1,8 +1,12 @@
 import './cardList';
 import './styles.css';
-
+import { renderLevel1Block } from './level';
+import { renderLevel2Block } from './level_average';
+import { renderLevel3Block } from './level_difficult';
 
 export const APP_CONTAINER = document.querySelector('.app') as HTMLElement;
+
+export function renderStartBlock() {
 const div = document.createElement('div');
 div.classList.add('complexity');
 APP_CONTAINER.appendChild(div);
@@ -48,20 +52,21 @@ div.appendChild(divStart);
 //   divStart.appendChild(buttonElem);
 // });
 
-export const button1 = document.createElement('button');
+const button1 = document.createElement('button');
 button1.classList.add('button');
 button1.textContent = '1';
 divStart.appendChild(button1);
-import { renderLevel1Block } from './level';
+
 
 button1.addEventListener('click', () => {
   // @ts-ignore
   window.application.renderLevel('level1');
+  
 });
 // @ts-ignore
 window.application.levels['level1'] = renderLevel1Block;
 
-import { renderLevel2Block } from './level_average';
+
 const button2 = document.createElement('button');
 button2.classList.add('button');
 button2.textContent = '2';
@@ -74,7 +79,7 @@ button2.addEventListener('click', () => {
 // @ts-ignore
 window.application.levels['level2'] = renderLevel2Block;
 
-import { renderLevel3Block } from './level_difficult';
+
 const button3 = document.createElement('button');
 button3.classList.add('button');
 button3.textContent = '3';
@@ -91,3 +96,6 @@ const buttonStart = document.createElement('button');
 buttonStart.classList.add('buttonstart');
 buttonStart.textContent = 'Старт';
 div.appendChild(buttonStart);
+
+}
+renderStartBlock()

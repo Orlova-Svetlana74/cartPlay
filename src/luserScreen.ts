@@ -1,8 +1,8 @@
 import { APP_CONTAINER } from './index';
 import {renderStartBlock} from './index';
+import {renderLevel1Block} from './level';
 
-export function renderWinScreenBlock() {
-  
+export function renderLuserScreenBlock() {
   const div = document.createElement('div');
   div.classList.add('complexity');
   APP_CONTAINER.appendChild(div);
@@ -12,38 +12,26 @@ export function renderWinScreenBlock() {
   div.appendChild(topDiv);
 
   const pictur = document.createElement('img');
-  pictur.setAttribute('src', './static/win.png');
+  pictur.setAttribute('src', './static/luser.png');
   pictur.classList.add('picturwin');
   topDiv.appendChild(pictur);
 
   const h1 = document.createElement('h1');
-  h1.textContent = 'Вы выиграли!';
+  h1.textContent = 'Вы проиграли!';
   h1.classList.add('titlewin');
   topDiv.appendChild(h1);
 
   const elapsedtime = document.createElement('h2');
-  elapsedtime.textContent = 'Затраченное время';
-  
-  // @ts-ignore
-  // window.application.time.min = mins;
-  // @ts-ignore
-  // window.application.time.sec = secs
-
+  elapsedtime.textContent = 'Затраченное время:';
   elapsedtime.classList.add('titletime');
   topDiv.appendChild(elapsedtime);
+  
+  const realtime = document.createElement('div');
+  realtime.classList.add('realtime');
+  // realtime.innerHTML = vremyMins;
+  // realtime.innerHTML = vremySecs;
+  topDiv.appendChild(realtime); 
 
-  const tablo = document.createElement('div');
-  tablo.classList.add('tablo');
-  topDiv.appendChild(tablo);
-  
-  // @ts-ignore
-  // window.application.time.sec = secs;
-  // @ts-ignore
-  // window.application.time.min = mins;
-  // @ts-ignore
-  // tablo. textContent = secs
-  
-  // tablo. textContent = mins
   const buttonRestart = document.createElement('button');
   buttonRestart.textContent = 'Начать заново!';
   buttonRestart.classList.add('buttonrestart');
@@ -55,5 +43,4 @@ export function renderWinScreenBlock() {
   });
   // @ts-ignore
   window.application.levels['start'] = renderStartBlock;
-
 }
