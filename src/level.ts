@@ -138,18 +138,15 @@ export function renderLevel1Block() {
     if (secs < 10) {
       secs = '0' + secs;
     }
-
     cardFieldTimer.textContent = mins + ':' + secs;
     cardFieldTimer.classList.add('timer-number');
   }
-  startTimer();
-  
+  startTimer();  
   function startTimer() {
     now = Date.now();
     mins = 0;
     timer = setInterval(time);
-  }
-  
+  }  
 }
 import { APP_CONTAINER } from './index';
 // @ts-ignore
