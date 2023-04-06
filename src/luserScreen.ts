@@ -25,17 +25,26 @@ export function renderLuserScreenBlock() {
   elapsedtime.textContent = 'Затраченное время:';
   elapsedtime.classList.add('titletime');
   topDiv.appendChild(elapsedtime);
-  
+
   const realtime = document.createElement('div');
   realtime.classList.add('realtime');
-  // realtime.innerHTML = vremyMins;
-  // realtime.innerHTML = vremySecs;
-  topDiv.appendChild(realtime); 
+
+  // @ts-ignore
+  // window.application.time.sec = secs;
+  // @ts-ignore
+  // window.application.time.min = mins;
+
+  // console.log(secs);
+  // console.log(mins);
+
+  topDiv.appendChild(realtime);
 
   const buttonRestart = document.createElement('button');
   buttonRestart.textContent = 'Начать заново!';
   buttonRestart.classList.add('buttonrestart');
   topDiv.appendChild(buttonRestart);
+
+  
 
   buttonRestart.addEventListener('click', () => {
     // @ts-ignore

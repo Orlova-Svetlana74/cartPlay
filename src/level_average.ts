@@ -14,7 +14,7 @@ export function renderLevel2Block() {
 
   const gameField = document.createElement('div');
   gameField.classList.add('gamefield');
-  gameSection.appendChild(gameField);
+  gameSection.appendChild(gameField);  
 
   interface Card {
     id: number;

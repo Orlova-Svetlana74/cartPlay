@@ -31,7 +31,6 @@ body {
   align-items: center;
   text-align: center;
   background-color: ghostwhite;
-  display: flex;
   border-radius: 12px;
   font-style: normal;
   font-weight: 400;
@@ -39,6 +38,7 @@ body {
   line-height: 72px;
   color: #0080c1;
   border: none;
+  display: none;
 }
 
 .title {
@@ -71,11 +71,19 @@ body {
   border: none;
 }
 
+.buttonstart:hover {
+  background: #7ac100;
+  color: #fff;
+  box-shadow: inset #7ac100 #fff;
+}
+
 .divstart {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 48px;
+  margin-left: 69px;
+  margin-right: 69px;
 }
 
 .subtitle {
@@ -106,6 +114,7 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: all 0.3s;
 }
 
 .timer {
@@ -197,4 +206,32 @@ body {
 
 .titletime {
   text-align: center;
+}
+
+.label {
+  background: #fff;
+  border-radius: 12px;
+  font-family: StratosSkyeng, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  align-items: center;
+  text-align: center;
+  color: #0080c1;
+  width: 97px;
+  height: 98px;
+  display: flex;
+  justify-content: center;
+
+  /* transition: all 0.3s; */
+}
+
+.label-active {
+  color: rgb(245 245 245);
+  background: #0080c1;
+}
+
+.label:hover {
+  color: darkorange;
 }

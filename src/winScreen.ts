@@ -25,9 +25,9 @@ export function renderWinScreenBlock() {
   elapsedtime.textContent = 'Затраченное время';
   
   // @ts-ignore
-  // window.application.time.min = mins;
+  window.application.time.min = mins;
   // @ts-ignore
-  // window.application.time.sec = secs
+  window.application.time.sec = secs
 
   elapsedtime.classList.add('titletime');
   topDiv.appendChild(elapsedtime);

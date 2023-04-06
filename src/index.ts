@@ -1,8 +1,8 @@
 import './cardList';
 import './styles.css';
 import { renderLevel1Block } from './level';
-// import { renderLevel2Block } from './level_average';
-// import { renderLevel3Block } from './level_difficult';
+import { renderLevel2Block } from './level_average';
+import { renderLevel3Block } from './level_difficult';
 
 export const APP_CONTAINER = document.querySelector('.app') as HTMLElement;
 
@@ -23,100 +23,130 @@ export function renderStartBlock() {
   const divStart = document.createElement('div');
   divStart.classList.add('divstart');
   div.appendChild(divStart);
-  const ButtonListData = [
-    {
-      id: 1,
-      elem: 'input',
-      class: 'lang-radio',
-      name: 'choicelevel',
-      type: 'radio',
-      value: '1',
-    },
-    {
-      id: 2,
-      elem: 'input',
-      class: 'lang-radio',
-      name: 'choicelevel',
-      type: 'radio',
-      value: '2',
-    },
-    {
-      id: 3,
-      elem: 'input',
-      class: 'lang-radio',
-      name: 'choicelevel',
-      type: 'radio',
-      value: '3',      
-    },
-  ];
-  ButtonListData.forEach((level) => {
-    const buttonElem = document.createElement(level.elem);
-    buttonElem.classList.add(level.class);
-    buttonElem.textContent = level.value;
-    buttonElem.setAttribute('name', level.name);
-    divStart.appendChild(buttonElem);
+
+  const label1 = document.createElement('label');
+  label1.classList.add('label');
+  label1.textContent = '1';
+  divStart.appendChild(label1);
+
+  const label2 = document.createElement('label');
+  label2.classList.add('label');
+  label2.textContent = '2';
+  divStart.appendChild(label2);
+
+  const label3 = document.createElement('label');
+  label3.classList.add('label');
+  label3.textContent = '3';
+  divStart.appendChild(label3);
+
+  const button1 = document.createElement('input');
+  button1.classList.add('lang-radio');
+  button1.setAttribute('type', 'radio');
+  button1.setAttribute('name', 'choicelevel');
+  button1.value = 'simple';
+  button1.textContent = '1';
+  label1.appendChild(button1);
+
+  label1.addEventListener('click', function () {
+    this.classList.add('label-active');
   });
 
-  let buttonStart: any = document.querySelector('.buttonstart');
-  buttonStart = document.createElement('buttonstart');
+  label2.addEventListener('click', function () {
+    this.classList.add('label-active');
+  });
+
+  label3.addEventListener('click', function () {
+    this.classList.add('label-active');
+  });
+
+  const button2 = document.createElement('input');
+  button2.classList.add('lang-radio');
+  button2.setAttribute('type', 'radio');
+  button2.setAttribute('name', 'choicelevel');
+  button2.value = 'average';
+  button2.textContent = '2';
+  label2.appendChild(button2);
+
+  const button3 = document.createElement('input');
+  button3.classList.add('lang-radio');
+  button3.setAttribute('type', 'radio');
+  button3.setAttribute('name', 'choicelevel');
+  button3.value = 'difficult';
+  button3.textContent = '3';
+  label3.appendChild(button3);
+
+  // const ButtonListData = [
+  //   {
+  //     id: '1-simple',
+  //     elem: 'input',
+  //     class: 'lang-radio',
+  //     name: 'choicelevel',
+  //     type: 'radio',
+  //     value: 'simple',
+  //   },
+  //   {
+  //     id: '2-average',
+  //     elem: 'input',
+  //     class: 'lang-radio',
+  //     name: 'choicelevel',
+  //     type: 'radio',
+  //     value: 'average',
+  //   },
+  //   {
+  //     id: '3-difficult',
+  //     elem: 'input',
+  //     class: 'lang-radio',
+  //     name: 'choicelevel',
+  //     type: 'radio',
+  //     value: 'difficult',
+  //   },
+  // ];
+  // ButtonListData.forEach((level) => {
+  //   const buttonElem = document.createElement(level.elem) as HTMLInputElement;
+  //   buttonElem.classList.add(level.class);
+  //   buttonElem.value = level.value;
+  //   buttonElem.type = level.type;
+  //   buttonElem.setAttribute('name', level.name);
+  //   divStart.appendChild(buttonElem);
+  //
+  // });
+
+  const buttonStart = document.createElement('button');
   buttonStart.classList.add('buttonstart');
   buttonStart.textContent = 'Старт';
   div.appendChild(buttonStart);
 
   buttonStart.addEventListener('click', () => {
+    // @ts-ignore
     document.querySelectorAll('.lang-radio').forEach((langRadio) => {
       // @ts-ignore
       if (langRadio.checked) {
         // @ts-ignore
-        console.log(langRadio.value);
-        // @ts-ignore
-        window.application.renderLevel('level1');
-        // @ts-ignore
-        window.application.levels['level1'] = renderLevel1Block;
+        let chactValue: string = langRadio.value;
+        switch (chactValue) {
+          case 'simple':
+            // @ts-ignore
+            window.application.renderLevel('level1');
+            break;
+
+          case 'average':
+            // @ts-ignore
+            window.application.renderLevel('level2');
+            break;
+
+          case 'difficult':
+            // @ts-ignore
+            window.application.renderLevel('level3');
+            break;
+        }
       }
     });
   });
-
-  // const button1 = document.createElement('lang-radio');
-  // button1.classList.add('button');
-  // button1.textContent = '1';
-  // divStart.appendChild(button1);
-
-  // button1.addEventListener('click', () => {
   // @ts-ignore
-  //   window.application.renderLevel('level1');
-
-  // });
+  window.application.levels['level1'] = renderLevel1Block;
   // @ts-ignore
-  // window.application.levels['level1'] = renderLevel1Block;
-
-  // const button2 = document.createElement('button');
-  // button2.classList.add('button');
-  // button2.textContent = '2';
-  // divStart.appendChild(button2);
-
-  // button2.addEventListener('click', () => {
+  window.application.levels['level2'] = renderLevel2Block;
   // @ts-ignore
-  // window.application.renderLevel('level2');
-  // });
-  // @ts-ignore
-  // window.application.levels['level2'] = renderLevel2Block;
-
-  // const button3 = document.createElement('button');
-  // button3.classList.add('button');
-  // button3.textContent = '3';
-  // divStart.appendChild(button3);
-
-  // button3.addEventListener('click', () => {
-  // @ts-ignore
-  // window.application.renderLevel('level3');
-  // });
-  // @ts-ignore
-  // window.application.levels['level3'] = renderLevel3Block;
-
-  // const buttonStart = document.createElement('button');
-  // buttonStart.classList.add('buttonstart');
-  // buttonStart.textContent = 'Старт';
-  // div.appendChild(buttonStart);
+  window.application.levels['level3'] = renderLevel3Block;
 }
 renderStartBlock()

@@ -70,17 +70,30 @@ export function renderLevel1Block() {
       // @ts-ignore
       window.application.renderLevel('win');
       clearTimeout(timer);
-      
+      console.log (cardFieldTimer)
+      console.log (mins)
       // @ts-ignore
       window.application.time.sec = secs;
       // @ts-ignore
       window.application.time.min = mins;
+      
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
       // @ts-ignore
       window.application.renderLevel('luser');
       clearTimeout(timer);
-    }    
+      console.log(mins);
+      console.log(secs);
+      // @ts-ignore
+      console.log (window.application.time.sec)
+      // @ts-ignore
+      console.log (window.application.time.min)
+    }
   }
+// @ts-ignore
+      window.application.time.sec = secs;
+      // @ts-ignore
+      window.application.time.min = mins;
+
   // @ts-ignore
   window.application.levels['win'] = renderWinScreenBlock;
   // @ts-ignore
@@ -141,12 +154,15 @@ export function renderLevel1Block() {
     cardFieldTimer.textContent = mins + ':' + secs;
     cardFieldTimer.classList.add('timer-number');
   }
-  startTimer();  
+  startTimer();
+  console.log (cardFieldTimer)
+   
   function startTimer() {
     now = Date.now();
     mins = 0;
     timer = setInterval(time);
   }  
+  
 }
 import { APP_CONTAINER } from './index';
 // @ts-ignore
@@ -162,7 +178,6 @@ window.application = {
   },
   time: {
       sec: 0,
-      min: 0
-      
-    },
+      min: 0,
+    },         
 };
