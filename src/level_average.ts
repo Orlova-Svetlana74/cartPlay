@@ -64,16 +64,25 @@ export function renderLevel2Block() {
     console.log('🚀 ~ file: level.js:58 ~ checkWin ~ winResult:', winResult);
     console.log(moves);
     if ((winResult = true && moves === 6)) {
+      clearInterval(timer);
+      // @ts-ignore
+      window.application.time.sec = secs;
+      // @ts-ignore
+      window.application.time.min = mins;
       // @ts-ignore
       window.application.renderLevel('win');
-      clearTimeout(timer);
+      
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
+      clearInterval(timer);
+      // @ts-ignore
+      window.application.time.sec = secs;
+      // @ts-ignore
+      window.application.time.min = mins;
       // @ts-ignore
       window.application.renderLevel('luser');
-      clearTimeout(timer);
+      
     }
   }
-
   // @ts-ignore
   window.application.levels['win'] = renderWinScreenBlock;
   // @ts-ignore

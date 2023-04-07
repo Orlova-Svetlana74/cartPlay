@@ -67,30 +67,34 @@ export function renderLevel1Block() {
     console.log('🚀 ~ file: level.js:58 ~ checkWin ~ winResult:', winResult);
     console.log(moves);
     if ((winResult = true && moves === 3)) {
-      // @ts-ignore
-      window.application.renderLevel('win');
-      clearTimeout(timer);
-      // console.log (cardFieldTimer)
-      // console.log (mins)
+      clearInterval(timer);
       // @ts-ignore
       window.application.time.sec = secs;
       // @ts-ignore
       window.application.time.min = mins;
+      // @ts-ignore
+      window.application.renderLevel('win');
+      
+      // console.log (cardFieldTimer)
+      // console.log (mins)
+      
       // @ts-ignore
       console.log (mins)
       // @ts-ignore
       console.log (secs)
       
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
-      // @ts-ignore
-      window.application.renderLevel('luser');
-      clearTimeout(timer);
-      // console.log(mins);
-      // console.log(secs);
+      clearInterval(timer);
       // @ts-ignore
       window.application.time.sec = secs;
       // @ts-ignore
       window.application.time.min = mins;
+      // @ts-ignore
+      window.application.renderLevel('luser');
+      
+      // console.log(mins);
+      // console.log(secs);
+      
       // @ts-ignore
       console.log (window.application.time.min)
       // @ts-ignore

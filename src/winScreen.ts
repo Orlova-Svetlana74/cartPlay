@@ -25,8 +25,7 @@ export function renderWinScreenBlock() {
   const elapsedtime = document.createElement('h2');
   elapsedtime.textContent = 'Затраченное время';
   elapsedtime.classList.add('titletime');
-  topDiv.appendChild(elapsedtime);
-  
+  topDiv.appendChild(elapsedtime);  
   // @ts-ignore
   let secs = window.application.time.sec;
   // @ts-ignore
