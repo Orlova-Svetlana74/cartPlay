@@ -70,30 +70,38 @@ export function renderLevel1Block() {
       // @ts-ignore
       window.application.renderLevel('win');
       clearTimeout(timer);
-      console.log (cardFieldTimer)
-      console.log (mins)
+      // console.log (cardFieldTimer)
+      // console.log (mins)
       // @ts-ignore
       window.application.time.sec = secs;
       // @ts-ignore
       window.application.time.min = mins;
+      // @ts-ignore
+      console.log (mins)
+      // @ts-ignore
+      console.log (secs)
       
     } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
       // @ts-ignore
       window.application.renderLevel('luser');
       clearTimeout(timer);
-      console.log(mins);
-      console.log(secs);
+      // console.log(mins);
+      // console.log(secs);
       // @ts-ignore
-      console.log (window.application.time.sec)
-      // @ts-ignore
-      console.log (window.application.time.min)
-    }
-  }
-// @ts-ignore
       window.application.time.sec = secs;
       // @ts-ignore
       window.application.time.min = mins;
+      // @ts-ignore
+      console.log (window.application.time.min)
+      // @ts-ignore
+      console.log (window.application.time.sec)
 
+      // @ts-ignore
+      console.log (mins)
+      // @ts-ignore
+      console.log (secs)
+    }
+  }
   // @ts-ignore
   window.application.levels['win'] = renderWinScreenBlock;
   // @ts-ignore
@@ -137,7 +145,6 @@ export function renderLevel1Block() {
   let timer: any = 0;
   let mins = 0;
   let secs: string | number = 0;
-
   
   const cardFieldTimer: any = document.createElement('span');
   TopTimer.appendChild(cardFieldTimer);

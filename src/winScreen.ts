@@ -1,5 +1,6 @@
 import { APP_CONTAINER } from './index';
 import {renderStartBlock} from './index';
+// import {renderLevel1Block} from './level';
 
 export function renderWinScreenBlock() {
   
@@ -23,29 +24,27 @@ export function renderWinScreenBlock() {
 
   const elapsedtime = document.createElement('h2');
   elapsedtime.textContent = 'Затраченное время';
-  
-  // @ts-ignore
-  window.application.time.min = mins;
-  // @ts-ignore
-  window.application.time.sec = secs
-
   elapsedtime.classList.add('titletime');
   topDiv.appendChild(elapsedtime);
+  
+  // @ts-ignore
+  let secs = window.application.time.sec;
+  // @ts-ignore
+  let mins = window.application.time.min;
 
-  const tablo = document.createElement('div');
-  tablo.classList.add('tablo');
-  topDiv.appendChild(tablo);
+  const realtime = document.createElement('div');
+  realtime.classList.add('realtime');   
+  realtime.textContent = mins + '.' + secs;
+  topDiv.appendChild(realtime);
+
+   // @ts-ignore
+   console.log (window.application.time.sec)
+   // @ts-ignore
+   console.log (window.application.time.min)
+    
   
-  // @ts-ignore
-  // window.application.time.sec = secs;
-  // @ts-ignore
-  // window.application.time.min = mins;
-  // @ts-ignore
-  // tablo. textContent = secs
-  
-  // tablo. textContent = mins
   const buttonRestart = document.createElement('button');
-  buttonRestart.textContent = 'Начать заново!';
+  buttonRestart.textContent = 'Играть снова!';
   buttonRestart.classList.add('buttonrestart');
   topDiv.appendChild(buttonRestart);
 
