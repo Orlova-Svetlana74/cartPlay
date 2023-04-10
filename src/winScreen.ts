@@ -1,9 +1,8 @@
 import { APP_CONTAINER } from './index';
-import {renderStartBlock} from './index';
+import { renderStartBlock } from './index';
 // import {renderLevel1Block} from './level';
 
 export function renderWinScreenBlock() {
-  
   const div = document.createElement('div');
   div.classList.add('complexity');
   APP_CONTAINER.appendChild(div);
@@ -25,33 +24,29 @@ export function renderWinScreenBlock() {
   const elapsedtime = document.createElement('h2');
   elapsedtime.textContent = 'Затраченное время';
   elapsedtime.classList.add('titletime');
-  topDiv.appendChild(elapsedtime);  
-  // @ts-ignore
-  let secs = window.application.time.sec;
-  // @ts-ignore
-  let mins = window.application.time.min;
+  topDiv.appendChild(elapsedtime);
+
+  const secs = window.application.time.sec;
+
+  const mins = window.application.time.min;
 
   const realtime = document.createElement('div');
-  realtime.classList.add('realtime');   
+  realtime.classList.add('realtime');
   realtime.textContent = mins + '.' + secs;
   topDiv.appendChild(realtime);
 
-   // @ts-ignore
-   console.log (window.application.time.sec)
-   // @ts-ignore
-   console.log (window.application.time.min)
-    
-  
+  console.log(window.application.time.sec);
+
+  console.log(window.application.time.min);
+
   const buttonRestart = document.createElement('button');
   buttonRestart.textContent = 'Играть снова!';
   buttonRestart.classList.add('buttonrestart');
   topDiv.appendChild(buttonRestart);
 
   buttonRestart.addEventListener('click', () => {
-    // @ts-ignore
     window.application.renderLevel('start');
   });
-  // @ts-ignore
-  window.application.levels['start'] = renderStartBlock;
 
+  window.application.levels['start'] = renderStartBlock;
 }

@@ -75,78 +75,39 @@ export function renderStartBlock() {
   button3.textContent = '3';
   label3.appendChild(button3);
 
-  // const ButtonListData = [
-  //   {
-  //     id: '1-simple',
-  //     elem: 'input',
-  //     class: 'lang-radio',
-  //     name: 'choicelevel',
-  //     type: 'radio',
-  //     value: 'simple',
-  //   },
-  //   {
-  //     id: '2-average',
-  //     elem: 'input',
-  //     class: 'lang-radio',
-  //     name: 'choicelevel',
-  //     type: 'radio',
-  //     value: 'average',
-  //   },
-  //   {
-  //     id: '3-difficult',
-  //     elem: 'input',
-  //     class: 'lang-radio',
-  //     name: 'choicelevel',
-  //     type: 'radio',
-  //     value: 'difficult',
-  //   },
-  // ];
-  // ButtonListData.forEach((level) => {
-  //   const buttonElem = document.createElement(level.elem) as HTMLInputElement;
-  //   buttonElem.classList.add(level.class);
-  //   buttonElem.value = level.value;
-  //   buttonElem.type = level.type;
-  //   buttonElem.setAttribute('name', level.name);
-  //   divStart.appendChild(buttonElem);
-  //
-  // });
-
   const buttonStart = document.createElement('button');
   buttonStart.classList.add('buttonstart');
   buttonStart.textContent = 'Старт';
   div.appendChild(buttonStart);
 
   buttonStart.addEventListener('click', () => {
-    // @ts-ignore
-    document.querySelectorAll('.lang-radio').forEach((langRadio) => {
-      // @ts-ignore
+    const lradios = document.querySelectorAll(
+      '.lang-radio'
+    ) as NodeListOf<HTMLInputElement>;
+    lradios.forEach((langRadio) => {
       if (langRadio.checked) {
-        // @ts-ignore
-        let chactValue: string = langRadio.value;
+        const chactValue: string = langRadio.value;
         switch (chactValue) {
           case 'simple':
-            // @ts-ignore
             window.application.renderLevel('level1');
             break;
 
           case 'average':
-            // @ts-ignore
             window.application.renderLevel('level2');
             break;
 
           case 'difficult':
-            // @ts-ignore
             window.application.renderLevel('level3');
             break;
         }
       }
     });
   });
-  // @ts-ignore
+
   window.application.levels['level1'] = renderLevel1Block;
-  // @ts-ignore
+
   window.application.levels['level2'] = renderLevel2Block;
-  // @ts-ignore
+
   window.application.levels['level3'] = renderLevel3Block;
 }
-renderStartBlock()
+renderStartBlock();

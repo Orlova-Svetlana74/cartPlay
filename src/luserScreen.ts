@@ -1,7 +1,6 @@
 import { APP_CONTAINER } from './index';
-import {renderStartBlock} from './index';
-import {renderLevel1Block} from './level';
-
+import { renderStartBlock } from './index';
+// import { renderLevel1Block } from './level';
 
 export function renderLuserScreenBlock() {
   const div = document.createElement('div');
@@ -27,19 +26,17 @@ export function renderLuserScreenBlock() {
   elapsedtime.classList.add('titletime');
   topDiv.appendChild(elapsedtime);
 
-  // @ts-ignore
-  let secs = window.application.time.sec;
-  // @ts-ignore
-  let mins = window.application.time.min;
+  const secs = window.application.time.sec;
+
+  const mins = window.application.time.min;
 
   const realtime = document.createElement('div');
   realtime.classList.add('realtime');
   realtime.textContent = mins + '.' + secs;
   topDiv.appendChild(realtime);
 
-  // @ts-ignore
   console.log(window.application.time.sec);
-  // @ts-ignore
+
   console.log(window.application.time.min);
 
   const buttonRestart = document.createElement('button');
@@ -48,10 +45,8 @@ export function renderLuserScreenBlock() {
   topDiv.appendChild(buttonRestart);
 
   buttonRestart.addEventListener('click', () => {
-    // @ts-ignore
     window.application.renderLevel('start');
   });
-  // @ts-ignore
+
   window.application.levels['start'] = renderStartBlock;
 }
-

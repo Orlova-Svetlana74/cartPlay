@@ -4,8 +4,10 @@
     "es6": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier"],
-  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "root": true,
   "parserOptions": {
     "sourceType": "module"
   },
@@ -18,6 +20,11 @@
     ],
     "camelcase": ["error"],
     "eqeqeq": ["error", "always"],
-    "no-undef": "off"
-  }
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    // "typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-this-alias": "off"
+    // "typescript-eslint/no-explicit-any": "error"
+  }  
 }
+

@@ -3,7 +3,6 @@ import { renderWinScreenBlock } from './winScreen';
 import { renderLuserScreenBlock } from './luserScreen';
 import { renderStartBlock } from './index';
 
-
 export function renderLevel1Block() {
   const gameSection = document.createElement('section');
   gameSection.classList.add('gamesection');
@@ -32,12 +31,29 @@ export function renderLevel1Block() {
 
   function shuffle(arrayNew: Array<Card>) {
     for (let i = arrayNew.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));
       [arrayNew[i], arrayNew[j]] = [arrayNew[j], arrayNew[i]];
     }
   }
   shuffle(arrayNew);
-  // @ts-ignore
+
+  arrayNew.forEach((card) => {
+    const cardElem = document.createElement(card.elem);
+    cardElem.setAttribute('src', card.src);
+
+    cardElem.setAttribute('data-framework', card.src);
+
+    gameField.appendChild(cardElem);
+
+    function coupCard() {
+      cardElem.setAttribute('src', card.cardShirt);
+    }
+    setTimeout(coupCard, 5000);
+    cardElem.addEventListener('click', function () {
+      cardElem.setAttribute('src', card.src);
+      cardElem.addEventListener('click', flipCard);
+    });
+  });
 
   let moves = 0;
   let firstCard: HTMLElement | null;
@@ -52,15 +68,15 @@ export function renderLevel1Block() {
     secondCard = this;
     checkWin();
   }
- 
+
   function checkWin() {
     // Смотрим, какие у них data атрибуты
     console.log('check first card: ', firstCard?.dataset.framework);
     console.log('check second card: ', secondCard?.dataset.framework);
     let winResult = false;
     if (firstCard?.dataset.framework === secondCard?.dataset.framework) {
-      winResult = true;      
-      moves++;      
+      winResult = true;
+      moves++;
       secondCard = null;
       firstCard = null;
     }
@@ -68,66 +84,28 @@ export function renderLevel1Block() {
     console.log(moves);
     if ((winResult = true && moves === 3)) {
       clearInterval(timer);
-      // @ts-ignore
-      window.application.time.sec = secs;
-      // @ts-ignore
-      window.application.time.min = mins;
-      // @ts-ignore
-      window.application.renderLevel('win');
-      
-      // console.log (cardFieldTimer)
-      // console.log (mins)
-      
-      // @ts-ignore
-      console.log (mins)
-      // @ts-ignore
-      console.log (secs)
-      
-    } else if (firstCard?.dataset.framework != secondCard?.dataset.framework) {
-      clearInterval(timer);
-      // @ts-ignore
-      window.application.time.sec = secs;
-      // @ts-ignore
-      window.application.time.min = mins;
-      // @ts-ignore
-      window.application.renderLevel('luser');
-      
-      // console.log(mins);
-      // console.log(secs);
-      
-      // @ts-ignore
-      console.log (window.application.time.min)
-      // @ts-ignore
-      console.log (window.application.time.sec)
 
-      // @ts-ignore
-      console.log (mins)
-      // @ts-ignore
-      console.log (secs)
+      window.application.time.sec = secs;
+
+      window.application.time.min = mins;
+
+      window.application.renderLevel('win');
+    } else if (firstCard?.dataset.framework !== secondCard?.dataset.framework) {
+      clearInterval(timer);
+
+      window.application.time.sec = secs;
+
+      window.application.time.min = mins;
+
+      window.application.renderLevel('luser');
     }
   }
-  // @ts-ignore
-  window.application.levels['win'] = renderWinScreenBlock;
-  // @ts-ignore
-  window.application.levels['luser'] = renderLuserScreenBlock;
-  // @ts-ignore
-  window.application.levels['level1'] = renderLevel1Block;
-  arrayNew.forEach((card) => {
-    const cardElem = document.createElement(card.elem);
-    cardElem.setAttribute('src', card.src);
-    
-    cardElem.setAttribute('data-framework', card.src);
 
-    gameField.appendChild(cardElem);
-    function coupCard() {
-      cardElem.setAttribute('src', card.cardShirt);
-    }
-    setTimeout(coupCard, 5000);
-    cardElem.addEventListener('click', flipCard);
-    cardElem.addEventListener('click', function () {
-      cardElem.setAttribute('src', card.src);
-    });
-  });
+  window.application.levels['win'] = renderWinScreenBlock;
+
+  window.application.levels['luser'] = renderLuserScreenBlock;
+
+  window.application.levels['level1'] = renderLevel1Block;
 
   const buttonRestart = document.createElement('button');
   buttonRestart.textContent = 'Начать заново!';
@@ -135,10 +113,9 @@ export function renderLevel1Block() {
   header.appendChild(buttonRestart);
 
   buttonRestart.addEventListener('click', () => {
-    // @ts-ignore
     window.application.renderLevel('start');
   });
-  // @ts-ignore
+
   window.application.levels['start'] = renderStartBlock;
 
   const TopTimer = document.createElement('div');
@@ -146,16 +123,16 @@ export function renderLevel1Block() {
   header.appendChild(TopTimer);
 
   let now = 0;
-  let timer: any = 0;
+  let timer: ReturnType<typeof setInterval>;
   let mins = 0;
   let secs: string | number = 0;
-  
-  const cardFieldTimer: any = document.createElement('span');
+
+  const cardFieldTimer = document.createElement('span');
   TopTimer.appendChild(cardFieldTimer);
 
   function time() {
     secs = Math.floor((Date.now() - now) / 1000);
-    if (secs == 60) {
+    if (secs === 60) {
       now = Date.now();
       mins++;
     }
@@ -166,29 +143,27 @@ export function renderLevel1Block() {
     cardFieldTimer.classList.add('timer-number');
   }
   startTimer();
-  console.log (cardFieldTimer)
-   
+  console.log(cardFieldTimer);
+
   function startTimer() {
     now = Date.now();
     mins = 0;
     timer = setInterval(time);
-  }  
-  
+  }
 }
 import { APP_CONTAINER } from './index';
-// @ts-ignore
+
 window.application = {
   levels: {},
-  renderLevel: function (levelNumber: any) {
-    // @ts-ignore
+  renderLevel: function (levelNumber) {
     window.application.levels[levelNumber];
     // очищаем контейнер перед отрисовкой экрана
     APP_CONTAINER.innerHTML = '';
-    // @ts-ignore
+
     window.application.levels[levelNumber]();
   },
   time: {
-      sec: 0,
-      min: 0,
-    },         
+    sec: 0,
+    min: 0,
+  },
 };
